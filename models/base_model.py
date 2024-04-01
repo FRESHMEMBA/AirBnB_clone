@@ -65,7 +65,7 @@ class BaseModel:
         - The string is formatted as
         "[ClassName] (id) {attribute1: value1, attribute2: value2, ...}".
         """
-        self.__str__ = f"[{type(self).__name__}] ({self.id}) {self.__dict__}"
+        return f"[{type(self).__name__}] ({self.id}) {self.__dict__}"
 
     def save(self) -> None:
         """
