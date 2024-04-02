@@ -25,7 +25,7 @@ class BaseModel:
     - to_dict(): Returns a dictionary representation of the BaseModel object.
     """
 
-    def __init__(self) -> None:
+    def __init__(self, *args, **kwargs) -> None:
         """
         Initializes a new instance of the BaseModel class.
 
@@ -43,9 +43,20 @@ class BaseModel:
         - It initializes the created_at and updated_at attributes with the
         current timestamp using the datetime.datetime.now() function.
         """
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.datetime.now()
-        self.updated_at = datetime.datetime.now()
+        if kwargs:
+            self.id = kwargs["id"]
+            self.created_at = datetime.strptime(
+                kwargs["created_at"],
+                "%y-%m-%d %H:%M:%S.%f"
+                )
+            self.updated_at = datetime.strptime(
+                kwargs["updated_at"],
+                "%y-%m-%d %H:%M:%S.%f"
+                )
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.datetime.now()
+            self.updated_at = datetime.datetime.now()
 
     def __str__(self) -> str:
         """
