@@ -8,6 +8,9 @@ from datetime import datetime
 import uuid
 
 
+from models.base_model import storage
+
+
 class BaseModel:
     """
     This is the BaseModel class. It defines all common attributes and methods
@@ -57,6 +60,7 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            storage.new()
 
     def __str__(self) -> str:
         """
@@ -95,6 +99,7 @@ class BaseModel:
         datetime.datetime.now() function.
         """
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self) -> dict:
         """
