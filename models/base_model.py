@@ -110,7 +110,7 @@ class BaseModel:
         - This method is called to update the updated_at attribute of the
         BaseModel object.
         - It sets the updated_at attribute to the current timestamp using the
-        datetime.datetime.now() function.
+        datetime.now() function.
         """
         obj_dict = self.__dict__.copy()
         obj_dict["__class__"] = type(self).__name__

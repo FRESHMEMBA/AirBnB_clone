@@ -51,3 +51,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(result["id"], base_model.id)
         self.assertEqual(result["created_at"], base_model.created_at.isoformat())
         self.assertEqual(result["updated_at"], base_model.updated_at.isoformat())
+
+if __name__ == "__main__":
+    unittest.main()
