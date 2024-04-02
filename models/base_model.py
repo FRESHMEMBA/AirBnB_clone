@@ -44,14 +44,20 @@ class BaseModel:
         current timestamp using the datetime.datetime.now() function.
         """
         if kwargs:
-            self.id = kwargs["id"]
+            self.id = kwargs.get("id", str(uuid.uuid4()))
             self.created_at = datetime.strptime(
-                kwargs["created_at"],
-                "%y-%m-%d %H:%M:%S.%f"
+                kwargs.get(
+                    "created_at",
+                    datetime.now().isoformat(),
+                    "%y-%m-%dT%H:%M:%S.%f"
+                    )
                 )
             self.updated_at = datetime.strptime(
-                kwargs["updated_at"],
-                "%y-%m-%d %H:%M:%S.%f"
+                kwargs.get(
+                    "updated_at",
+                    datetime.now().isoformat(),
+                    "%y-%m-%dT%H:%M:%S.%f"
+                    )
                 )
         else:
             self.id = str(uuid.uuid4())
