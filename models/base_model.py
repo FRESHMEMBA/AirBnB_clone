@@ -47,10 +47,11 @@ class BaseModel:
             self.id = kwargs.get("id", str(uuid.uuid4()))
             self.created_at = datetime.strptime(
                 kwargs.get("created_at", datetime.now()),
+                "%Y-%m-%dT%H:%M:%S.%f"
                 )
             self.updated_at = datetime.strptime(
                 kwargs.get("updated_at", datetime.now()),
-                "%y-%m-%dT%H:%M:%S.%f"
+                "%Y-%m-%dT%H:%M:%S.%f"
                 )
         else:
             self.id = str(uuid.uuid4())
