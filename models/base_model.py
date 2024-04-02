@@ -8,7 +8,7 @@ from datetime import datetime
 import uuid
 
 
-import storage
+from . import storage
 
 
 class BaseModel:
