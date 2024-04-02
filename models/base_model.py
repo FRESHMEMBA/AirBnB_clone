@@ -94,7 +94,7 @@ class BaseModel:
         - It sets the updated_at attribute to the current timestamp using the
         datetime.datetime.now() function.
         """
-        self.updated_at = datetime.datetime.now()
+        self.updated_at = datetime.now()
 
     def to_dict(self) -> dict:
         """
