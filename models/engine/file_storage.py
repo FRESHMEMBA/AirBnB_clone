@@ -4,9 +4,9 @@ Defines a class called FileStorage that serializes instances to a JSON file and
 deserializes JSON file to intances
 """
 
-
-import json
 import os
+import json
+from models.base_model import BaseModel
 
 
 class FileStorage:
