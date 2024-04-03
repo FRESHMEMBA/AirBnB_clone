@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """
 Defines a class called FileStorage that serializes instances to a JSON file and
 deserializes JSON file to intances
@@ -76,15 +77,6 @@ class FileStorage:
     def save(self) -> None:
         """
         Saves the serialized objects to the JSON file.
-
-        Parameters:
-            None
-
-        Returns:
-            None
-
-        Raises:
-            None
         """
         with open(self.__file_path, 'w') as file:
             json.dump(self.__objects, file)
@@ -92,15 +84,6 @@ class FileStorage:
     def reload(self) -> None:
         """
         Reloads the serialized objects from the JSON file.
-
-        Parameters:
-            None
-
-        Returns:
-            None
-
-        Raises:
-            None
         """
         if os.path.exists(self.__file_path):
             with open(self.__file_path) as file:

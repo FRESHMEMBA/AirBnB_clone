@@ -1,12 +1,11 @@
+#!/usr/bin/python3
 import os
 import json
 import unittest
 from AirBnb_clone.models.engine.file_storage import FileStorage
 
 
-
 class TestFileStorage(unittest.TestCase):
-
     # FileStorage can be initialized without errors
     def test_initialize_without_errors(self):
         storage = FileStorage()
