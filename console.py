@@ -19,13 +19,6 @@ class HBNBCommand(cmd.Cmd):
         """
         This method is used to handle the 'quit' command in the
         HBNB application.
-            
-        Parameters:
-            arg (str): The argument passed with the 'quit' command.
-                
-        Returns:
-            bool: True, indicating that the command has been
-            successfully executed.
         """
         return True
 
@@ -33,13 +26,6 @@ class HBNBCommand(cmd.Cmd):
         """
         This method is used to handle the 'quit' command in the
         HBNB application.
-            
-        Parameters:
-            arg (str): The argument passed with the 'quit' command.
-                
-        Returns:
-            bool: True, indicating that the command has been
-            successfully executed.
         """
         return True
 
@@ -151,6 +137,7 @@ class HBNBCommand(cmd.Cmd):
         obj = storage.all()[key]
         setattr(obj, args[2], args[3].strip('"'))
         obj.save()
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()

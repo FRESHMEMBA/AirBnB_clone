@@ -27,19 +27,6 @@ class FileStorage:
     def __init__(self) -> None:
         """
         Initializes a new instance of the FileStorage class.
-
-        Parameters:
-            None
-
-        Returns:
-            None
-
-        Raises:
-            None
-
-        Attributes:
-            __file_path (str): The path to the JSON file.
-            __objects (dict): A dictionary to store the serialized objects.
         """
         self.__file_path = "file.json"
         self.__objects = {}
@@ -47,32 +34,14 @@ class FileStorage:
     def all(self) -> dict:
         """
         Returns a dictionary containing all the serialized objects.
-
-        Parameters:
-            None
-
-        Returns:
-            dict: A dictionary containing all the serialized objects.
-
-        Raises:
-            None
         """
         return self.__objects
 
     def new(self, obj) -> None:
         """
         Adds a new object to the dictionary of serialized objects.
-
-        Parameters:
-            obj: The object to be added.
-
-        Returns:
-            None
-
-        Raises:
-            None
         """
-        self.__objects[f"{type(obj).__name__}.{obj.id}"] = obj.to_dict()
+        self.__objects[f"{type(obj).__name__}.{obj.id}"] = obj
 
     def save(self) -> None:
         """
