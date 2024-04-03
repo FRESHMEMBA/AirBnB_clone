@@ -29,12 +29,20 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, arg) -> bool:
         """
+        This method is used to handle the 'quit' command in the
+        HBNB application.
+            
+        Parameters:
+            arg (str): The argument passed with the 'quit' command.
+                
+        Returns:
+            bool: True, indicating that the command has been
+            successfully executed.
         """
         return True
 
     def emptyline(self) -> None:
-        """
-        """
+        """Do nothing on an empty line"""
         pass
 
 
