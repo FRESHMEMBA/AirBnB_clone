@@ -24,31 +24,34 @@ class FileStorage:
         save(): Saves the serialized objects to the JSON file.
         reload(): Loads the serialized objects from the JSON file.
     """
-    def __init__(self) -> None:
-        """
-        Initializes a new instance of the FileStorage class.
-        """
-        self.__file_path = "file.json"
-        self.__objects = {}
+
+    __file_path = "file.json"
+    __objects = {}
 
     def all(self) -> dict:
         """
         Returns a dictionary containing all the serialized objects.
         """
-        return self.__objects
+        return FileStorage.__objects
 
     def new(self, obj) -> None:
         """
         Adds a new object to the dictionary of serialized objects.
         """
-        self.__objects[f"{type(obj).__name__}.{obj.id}"] = obj.to_dict()
+        FileStorage.__objects[f"{type(obj).__name__}.{obj.id}"] = obj
 
     def save(self) -> None:
         """
         Saves the serialized objects to the JSON file.
         """
-        with open(self.__file_path, 'w') as file:
-            json.dump(self.__objects, file)
+        all_objects = FileStorage.__objects
+        obj_dict = {}
+
+        for obj in all_objects.keys():
+            obj_dict[obj] = all_objects[obj].to_dict()
+
+        with open(FileStorage.__file_path, 'w') as file:
+            json.dump(obj_dict, file)
 
     def reload(self) -> None:
         """
@@ -56,4 +59,10 @@ class FileStorage:
         """
         if os.path.exists(self.__file_path):
             with open(self.__file_path) as file:
-                self.__objects = json.load(file)
+                obj_dict = json.load(file)
+
+                for key, value in obj_dict.items():
+                    cls_name, obj_id = key.split('.')
+                    cls = eval(cls_name)
+                    obj = cls(**value)
+                    FileStorage.__objects[key] = obj
