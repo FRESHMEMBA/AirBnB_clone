@@ -41,7 +41,7 @@ class FileStorage:
         """
         Adds a new object to the dictionary of serialized objects.
         """
-        self.__objects[f"{type(obj).__name__}.{obj.id}"] = obj
+        self.__objects[f"{type(obj).__name__}.{obj.id}"] = obj.to_dict()
 
     def save(self) -> None:
         """
