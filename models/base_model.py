@@ -1,11 +1,15 @@
+#!/usr/bin/python3
 """
 Defines a class called BaseModel, which is a base class for all other classes
 in the AirBnB project to inherit from.
 """
 
 
-import datetime
+from datetime import datetime
 import uuid
+
+
+from . import storage
 
 
 class BaseModel:
@@ -25,7 +29,7 @@ class BaseModel:
     - to_dict(): Returns a dictionary representation of the BaseModel object.
     """
 
-    def __init__(self) -> None:
+    def __init__(self, *args, **kwargs) -> None:
         """
         Initializes a new instance of the BaseModel class.
 
@@ -43,9 +47,21 @@ class BaseModel:
         - It initializes the created_at and updated_at attributes with the
         current timestamp using the datetime.datetime.now() function.
         """
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.datetime.now()
-        self.updated_at = datetime.datetime.now()
+        if kwargs:
+            self.id = kwargs.get("id", str(uuid.uuid4()))
+            self.created_at = datetime.strptime(
+                kwargs.get("created_at", datetime.now()),
+                "%Y-%m-%dT%H:%M:%S.%f"
+                )
+            self.updated_at = datetime.strptime(
+                kwargs.get("updated_at", datetime.now()),
+                "%Y-%m-%dT%H:%M:%S.%f"
+                )
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            storage.new(self)
 
     def __str__(self) -> str:
         """
@@ -83,7 +99,8 @@ class BaseModel:
         - It sets the updated_at attribute to the current timestamp using the
         datetime.datetime.now() function.
         """
-        self.updated_at = datetime.datetime.now()
+        self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self) -> dict:
         """
@@ -99,7 +116,7 @@ class BaseModel:
         - This method is called to update the updated_at attribute of the
         BaseModel object.
         - It sets the updated_at attribute to the current timestamp using the
-        datetime.datetime.now() function.
+        datetime.now() function.
         """
         obj_dict = self.__dict__.copy()
         obj_dict["__class__"] = type(self).__name__
