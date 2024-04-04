@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from AirBnb_clone.models.review import Review
+from models.review import Review
 
 
 import unittest

@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from AirBnb_clone.models.state import State
+from models.state import State
 
 
 import unittest

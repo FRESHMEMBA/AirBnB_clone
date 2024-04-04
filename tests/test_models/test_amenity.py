@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from AirBnb_clone.models.amenity import Amenity
+from models.amenity import Amenity
 from datetime import datetime
 
 

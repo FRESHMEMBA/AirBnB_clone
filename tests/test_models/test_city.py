@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from AirBnb_clone.models.city import City
+from models.city import City
 
 
 import unittest

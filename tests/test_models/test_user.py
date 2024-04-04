@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import unittest
-from AirBnb_clone.models.user import User
+from models.user import User
 
 class TestUser(unittest.TestCase):
     # Creating a new instance of User should initialize its attributes with the correct values
