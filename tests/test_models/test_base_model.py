@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import time
 import unittest
-from models.base_model import BaseModel
+from AirBnb_clone.models.base_model import BaseModel
 
 
 class TestBaseModel(unittest.TestCase):
