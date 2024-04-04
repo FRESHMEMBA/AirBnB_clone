@@ -52,5 +52,5 @@ class FileStorage:
         Reloads the serialized objects from the JSON file.
         """
         if os.path.exists(FileStorage.__file_path):
-            with open(self.__file_path) as file:
+            with open(FileStorage.__file_path) as file:
                 FileStorage.__objects = json.load(file)
