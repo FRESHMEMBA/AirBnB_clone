@@ -7,7 +7,13 @@ deserializes JSON file to intances
 
 import os
 import json
+from models.amenity import Amenity
 from models.base_model import BaseModel
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
 
 
 class FileStorage:
@@ -61,5 +67,6 @@ class FileStorage:
                 data = json.load(file)
                 for key, value in data.items():
                     class_name = value.get("__class__")
-                    if class_name == "BaseModel":
-                        FileStorage.__objects[key] = BaseModel(**value)
+                    cls = eval(class_name)
+                    if class_name == cls.__name__:
+                        FileStorage.__objects[key] = cls(**value)

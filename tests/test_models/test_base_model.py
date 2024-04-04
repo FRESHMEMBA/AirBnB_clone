@@ -3,6 +3,7 @@ import time
 import unittest
 from AirBnb_clone.models.base_model import BaseModel
 
+
 class TestBaseModel(unittest.TestCase):
     # Initializes a new instance of the BaseModel class without any errors.
     def test_init_without_errors(self):
