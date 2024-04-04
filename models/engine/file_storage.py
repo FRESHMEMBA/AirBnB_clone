@@ -61,5 +61,6 @@ class FileStorage:
                 data = json.load(file)
                 for key, value in data.items():
                     class_name = value.get("__class__")
-                    if class_name == "BaseModel":
-                        FileStorage.__objects[key] = BaseModel(**value)
+                    cls = eval(class_name)
+                    if class_name == cls.__name__:
+                        FileStorage.__objects[key] = cls(**value)
