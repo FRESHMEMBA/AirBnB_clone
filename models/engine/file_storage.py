@@ -5,8 +5,9 @@ deserializes JSON file to intances
 """
 
 
-import json
 import os
+import json
+from models.base_model import BaseModel
 
 
 class FileStorage:
@@ -38,14 +39,18 @@ class FileStorage:
         """
         Adds a new object to the dictionary of serialized objects.
         """
-        FileStorage.__objects[f"{type(obj).__name__}.{obj.id}"] = obj.to_dict()
+        FileStorage.__objects[f"{type(obj).__name__}.{obj.id}"] = obj
 
     def save(self) -> None:
         """
         Saves the serialized objects to the JSON file.
         """
+        serialized_objects = {}
+        for key, value in FileStorage.__objects.items():
+            serialized_objects[key] = value.to_dict()
+
         with open(FileStorage.__file_path, 'w') as file:
-            json.dump(FileStorage.__objects, file)
+            json.dump(serialized_objects, file)
 
     def reload(self) -> None:
         """
@@ -53,4 +58,8 @@ class FileStorage:
         """
         if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path) as file:
-                FileStorage.__objects = json.load(file)
+                data = json.load(file)
+                for key, value in data.items():
+                    class_name = value.get("__class__")
+                    if class_name == "BaseModel":
+                        FileStorage.__objects[key] = BaseModel(**value)
