@@ -2,7 +2,7 @@
 import os
 import json
 import unittest
-from AirBnb_clone.models.engine.file_storage import FileStorage
+from models.engine.file_storage import FileStorage
 
 
 class TestFileStorage(unittest.TestCase):
