@@ -7,6 +7,7 @@ Contains the entry point of the command interpreter
 import cmd
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -14,7 +15,15 @@ class HBNBCommand(cmd.Cmd):
     This class represents the command interpreter for the HBNB application.
     """
     prompt = "(hbnb) "
-
+    valid_classes = [
+        "BaseModel",
+        "User",
+        "State",
+        "City",
+        "Amenity",
+        "Place",
+        "Review",
+    ]
     def do_quit(self, arg) -> bool:
         """
         This method is used to handle the 'quit' command in the
@@ -57,7 +66,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         args = arg.split()
-        if args[0] not in ["BaseModel", "User", "Place"]:
+        if args[0] not in HBNBCommand.valid_classes:
             print("** class doesn't exist **")
             return
         if len(args) < 2:
@@ -78,7 +87,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         args = arg.split()
-        if args[0] not in ["BaseModel", "User", "Place"]:
+        if args[0] not in HBNBCommand.valid_classes:
             print("** class doesn't exist **")
             return
         if len(args) < 2:
@@ -99,7 +108,7 @@ class HBNBCommand(cmd.Cmd):
         if not arg:
             print([str(instance) for instance in storage.all().values()])
             return
-        elif arg not in ["BaseModel", "User", "Place"]:
+        elif arg not in HBNBCommand.valid_classes:
             print("** class doesn't exist **")
             return
         print(
@@ -118,7 +127,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         args = arg.split()
-        if args[0] not in ["BaseModel", "User", "Place"]:
+        if args[0] not in HBNBCommand.valid_classes:
             print("** class doesn't exist **")
             return
         if len(args) < 2:
