@@ -6,7 +6,7 @@ deserializes JSON file to intances
 
 import os
 import json
-import models
+# import models
 # from models.base_model import BaseModel
 
 
@@ -59,6 +59,7 @@ class FileStorage:
         """
         Reloads the serialized objects from the JSON file.
         """
+        import models
         if os.path.exists(self.__file_path):
             with open(self.__file_path) as file:
                 obj_dict = json.load(file)
